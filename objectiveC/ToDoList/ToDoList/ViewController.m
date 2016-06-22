@@ -8,8 +8,11 @@
 
 #import "ViewController.h"
 #import "ToDoCell.h"
+#import "AddItemViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, AddItemViewControllerDelegate>
+
+@property (nonatomic, strong) NSMutableArray *todos;
 
 @end
 
@@ -17,12 +20,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.todos = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark Table View Delegate Method
 
@@ -32,16 +37,33 @@
     if (!cell) {
         cell = [[ToDoCell alloc] init];
     }
-    cell.cellLabel.text = @"Hello";
+    cell.cellLabel.text = self.todos[indexPath.row];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [self.todos count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Hello I was touched: %@", indexPath);
 }
 
+
+#pragma mark AddItemViewCOntrollerDelegate Methods
+
+- (void)didSaveNewToDo:(NSString *)toDoText {
+    NSLog(@"%@",toDoText);
+    [self.todos addObject:toDoText];
+    [self.tableView reloadData];
+}
+
+
+#pragma mark Navigation 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *navVC = [segue destinationViewController];
+    AddItemViewController *addVC = navVC.viewControllers[0];
+    addVC.delegate = self;
+}
 @end
