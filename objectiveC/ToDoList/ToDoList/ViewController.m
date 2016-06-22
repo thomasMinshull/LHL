@@ -49,6 +49,13 @@
     NSLog(@"Hello I was touched: %@", indexPath);
 }
 
+// Not called for edit actions using UITableViewRowAction - the action's handler will be invoked instead
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.todos removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+    }
+}
 
 #pragma mark AddItemViewCOntrollerDelegate Methods
 
