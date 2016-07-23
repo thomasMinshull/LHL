@@ -13,6 +13,7 @@
 		55CEB2EF1D4428F100BEB574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CEB2ED1D4428F100BEB574 /* Main.storyboard */; };
 		55CEB2F11D4428F100BEB574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55CEB2F01D4428F100BEB574 /* Assets.xcassets */; };
 		55CEB2F41D4428F100BEB574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CEB2F21D4428F100BEB574 /* LaunchScreen.storyboard */; };
+		55CEB2FD1D442F8000BEB574 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CEB2FC1D442F8000BEB574 /* linkedin-sdk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		55CEB2F01D4428F100BEB574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55CEB2F31D4428F100BEB574 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55CEB2F51D4428F100BEB574 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55CEB2FC1D442F8000BEB574 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55CEB2FD1D442F8000BEB574 /* linkedin-sdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				55CEB2E31D4428F100BEB574 /* PingLinkedInLoginTest */,
+				55CEB2FE1D442F8D00BEB574 /* Frameworks */,
 				55CEB2E21D4428F100BEB574 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +81,15 @@
 				55CEB2E51D4428F100BEB574 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55CEB2FE1D442F8D00BEB574 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55CEB2FC1D442F8000BEB574 /* linkedin-sdk.framework */,
+			);
+			name = Frameworks;
+			path = PingLinkedInLoginTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +276,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PingLinkedInLoginTest",
+				);
 				INFOPLIST_FILE = PingLinkedInLoginTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.PingLinkedInLoginTest;
@@ -274,6 +291,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PingLinkedInLoginTest",
+				);
 				INFOPLIST_FILE = PingLinkedInLoginTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.PingLinkedInLoginTest;
