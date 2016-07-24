@@ -22,6 +22,15 @@
     // CheckKeyChain for access token
         // If there is an acess token attemp to login with access token
     
+    
+    /* sudo code
+            NSString tokenFromKeyChain = [Keychain getObjectForKey: KEY];
+            
+            if (tokenFromKeyChain) { */
+               // LISDKAccessToken *token = [LISDKAccessToken LISDKAccessTokenWithSerializedString:tokenFromKeyChain];
+                // LISDKSession *session = [LISDKSessionManager createSessionWithAccessToken:token];
+    
+    
         // If there is not an access token or if the login attempt with the access token fails...
         // login and request new access token
     
@@ -34,11 +43,24 @@
      successBlock:^(NSString *returnState) {
          NSLog(@"%s","success called!");
          LISDKSession *session = [[LISDKSessionManager sharedInstance] session];
+         
+         NSString *url = @"https://api.linkedin.com/v1/people/~";
+         
+         if ([LISDKSessionManager hasValidSession]) {
+             [[LISDKAPIHelper sharedInstance] getRequest:url
+                                                 success:^(LISDKAPIResponse *response) {
+                                                     // do something with response
+                                                     NSLog(@"got user profile: %@", response.data);
+                                                 }
+                                                   error:^(LISDKAPIError *apiError) {
+                                                       // do something with error
+                                                       NSLog(@"Failed to get user profile: %@", apiError);
+                                                   }];
+         }
      }
      errorBlock:^(NSError *error) {
          NSLog(@"%s","error called!");
-     }
-     ];
+     }];
     
     DeeplinkSuccessBlock success = ^(NSString *returnState) {
         NSLog(@"Success with returned state: %@",returnState);
