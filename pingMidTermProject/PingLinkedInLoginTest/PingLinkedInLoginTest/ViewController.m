@@ -10,12 +10,19 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *MartinButton;
+@property (weak, nonatomic) IBOutlet UIButton *meButton;
+
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.MartinButton setEnabled:NO];
+    [self.meButton setEnabled:NO];
     
     // LogIn
     
@@ -51,6 +58,15 @@
                                                  success:^(LISDKAPIResponse *response) {
                                                      // do something with response
                                                      NSLog(@"got user profile: %@", response.data);
+                                                     // get and store my member ID
+                                                     
+                                                     //pass MyProfile InfoToServer ie picture name id etc
+                                                     
+                                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                                         [self.meButton setEnabled:YES];
+                                                         [self.MartinButton setEnabled:YES];
+                                                         [self.view setNeedsDisplay];
+                                                     });
                                                  }
                                                    error:^(LISDKAPIError *apiError) {
                                                        // do something with error
@@ -62,6 +78,16 @@
          NSLog(@"%s","error called!");
      }];
     
+
+}
+
+
+#pragma mark -Actions
+
+- (IBAction)martinButtonTapped:(id)sender {
+}
+
+- (IBAction)myButtonTapped:(id)sender {
     DeeplinkSuccessBlock success = ^(NSString *returnState) {
         NSLog(@"Success with returned state: %@",returnState);
     };
@@ -74,9 +100,5 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
